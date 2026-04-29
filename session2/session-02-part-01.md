@@ -15,19 +15,24 @@ Before starting:
 
 1. In Visual Studio Code terminal, update your local repository (do this each time before you start, since new updates may be available).
 
-Option A (full repository update, recommended):
+Full repository update, recommended:
 
 ```bash
 git pull origin main
 ```
 
-Option B (refresh only Session 2 material, useful when you want to update this folder only):
+**Do not run this.** Keep it as an option to refresh only session material when needed.
 
 ```bash
 git fetch origin
 git restore --source origin/main --staged --worktree session2
-git clean -fd session2
+git clean -fdn session2
+# Review the preview first, then run:
+git clean -fd -e session2/solutions session2
 ```
+
+> [!WARNING]
+> `git clean` deletes untracked files. Keep your own work inside `session2/solutions` and use the command above with `-e session2/solutions` to protect it.
 
 2. Open the `session2` folder in Visual Studio Code and in terminal.
 
@@ -64,7 +69,7 @@ Go to Google AI Studio, login using your personal gmail account and create an AP
 
 #### 4. Set API key in terminal
 
-On macOS/Linux:
+Return to your Visual Studio Code terminal. On macOS/Linux, run the following command (replace with your API key):
 
 ```bash
 export GEMINI_API_KEY="PASTE_YOUR_KEY"
@@ -76,6 +81,9 @@ On Windows PowerShell:
 $env:GEMINI_API_KEY="PASTE_YOUR_KEY"
 ```
 
+> [!TIP]
+> You can either use an `OPENAI_API_KEY` if you have one. Gemini is free to use, but there are some limits.
+ 
 **Test key is set**
 
 Run this quick check in your terminal:
