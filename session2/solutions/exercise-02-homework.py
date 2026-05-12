@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-
+os.environ["GEMINI_API_KEY"] = ''
 def ask_gemini(prompt, model_name="gemini-2.5-flash"):
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
@@ -44,7 +44,7 @@ def ask_gemini(prompt, model_name="gemini-2.5-flash"):
                 "Gemini rate/limit reached. Please wait a minute and try again."
             ) from err
         raise
-
+    print("AI response:", data)
     return data["candidates"][0]["content"]["parts"][0]["text"].strip()
 
 
