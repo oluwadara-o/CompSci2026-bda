@@ -4,6 +4,8 @@ import time
 
 def task(name, seconds):
     print(f"Task {name} started")
+    if seconds > 1:
+        raise Exception(f"Task {name} failed due to too long duration")
     time.sleep(seconds)
     print(f"Task {name} finished")
 
@@ -29,13 +31,13 @@ def parallel_runner():
     p1.start()
     p2.start()
 
-    p1.join()
-    p2.join()
+    # p1.join()
+    # p2.join()
 
     end = time.perf_counter()
     print(f"Parallel time: {end - start:.2f}s")
 
 
 if __name__ == "__main__":
-    serial_runner()
+    # serial_runner()
     parallel_runner()

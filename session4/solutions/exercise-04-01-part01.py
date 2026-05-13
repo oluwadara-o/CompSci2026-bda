@@ -21,6 +21,9 @@ def generate_and_sort_numbers(n=10000):
 
 def serial_runner(runs=3):
     start = time.perf_counter()
+    generate_and_sort_numbers()
+    generate_and_sort_numbers()
+    generate_and_sort_numbers()
 
     # TODO: call generate_and_sort_numbers() runs times
     ...
@@ -38,6 +41,14 @@ def parallel_runner(runs=3):
     # TODO: start each process
     # TODO: wait for each process to finish
     ...
+    for x in range(4):
+        processes.append(mp.Process(target=generate_and_sort_numbers))
+
+    for process in processes:
+        process.start()
+
+    for process in processes:
+        process.join()
 
     end = time.perf_counter()
     return end - start
